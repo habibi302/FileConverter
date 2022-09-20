@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useSelector, useDispatch } from 'react-redux';
 import '../core-ui/draganddrop.css';
 import FileCard from './file-card';
+import {setUploadedImages} from "../actions/index";
 
-import images from "../constants/images";
 
-function DragAndDrop(Props) {
-  const [characters, updateCharacters] = useState(Props.images);
+function DragAndDrop() {
+  const myState =  useSelector(state=>state.imageContainer);
+  const dispatch = useDispatch();
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
-    const items = Array.from(characters);
+    const items = Array.from(myState);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    updateCharacters(items);
+    dispatch(setUploadedImages(items));
+  }
+
+  const deletePhoto = (val)=>{
+    console.log(myState);
   }
 
   return (
@@ -25,12 +31,12 @@ function DragAndDrop(Props) {
           <Droppable droppableId="characters" direction='horizontal'>
             {(provided) => (
               <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                {characters.map((val, index) => {
+                {myState.map((val, index) => {
                   return (
                     <Draggable key={val.id} draggableId={val.id} index={index}>
                       {(provided) => (
                         <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <FileCard id={val.id} src={val.file}/>
+                          <FileCard id={val.id} src={val.file} deletePhotofn={deletePhoto}/>
                         </li>
                       )}
                     </Draggable>

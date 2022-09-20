@@ -8,12 +8,16 @@ import {} from "@fortawesome/free-brands-svg-icons"
 import {faArrowAltCircleUp, faCircleXmark, faCircleRight, faCircleLeft} from "@fortawesome/free-regular-svg-icons"
 import DragAndDrop from './draganddrop'
 import ReactDOM from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {setUploadedImages} from "../actions/index";
 
 
 export default function Card() {
 
+  const myState =  useSelector((state)=>state.imageContainer);
+  const dispatch = useDispatch();
+
   const [allimages, updateAllImages] = useState(null);
-  const [uploadedImages, setUploadedImages] = useState(null);
 
 function uploadFile(e){
   const node = document.getElementById("upload-file");
@@ -31,7 +35,7 @@ useEffect(()=>{
     
     const fetchData = async()=>{
       const response = await Axios.post('/upload',formData);
-      setUploadedImages(response.data);
+      dispatch(setUploadedImages(response.data));
     }
 
     if(!formData.entries().next().done){
@@ -39,8 +43,6 @@ useEffect(()=>{
     }
     console.log("Clicked!");
     }
-
-    
   
     function addImageToForm(images){
       const formData = new FormData();
@@ -54,8 +56,17 @@ useEffect(()=>{
 
         return formData;
     }
-});
+    
+},[allimages]);
 
+
+useEffect(()=>{
+  const  fetchData = async()=>{
+    const response = await Axios.get("/getfiles");
+    dispatch(setUploadedImages(response.data));
+  }
+  fetchData();
+},[]);
 
 function combine(){
   Axios.get("/combine").then(res=>{
@@ -83,7 +94,7 @@ function combine(){
                 <div className={classes.buttons}>
                   <button className={classes.upload_btn}  onClick={(e)=>{uploadFile(e)}}>
                   <FontAwesomeIcon className={classes.upload_icon} icon={faArrowAltCircleUp}/>
-                  <p>UPLOA FILES</p>
+                  <p>UPLOAD FILES</p>
                   </button>
                   <input id="upload-file" multiple type='file' accept=".jpg" onChange={addImage} />
                   <button className={classes.clear_btn}>
@@ -100,10 +111,10 @@ function combine(){
                   
                   <div style={true?{border: "none", opacity: "1"}:{}} className={classes.drop_area}>
                   {
-                    uploadedImages
+                    myState
                     ?
                     <div className={classes.carousel} id="carousel">
-                    <DragAndDrop images={uploadedImages}/>
+                    <DragAndDrop/>
                     </div>
                     :
                     <h1>Drop Your Files Here</h1>

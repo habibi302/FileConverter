@@ -12,7 +12,7 @@ export default function FileCard(props) {
   return (
     <>
         <div className={classes.container}>
-            <FontAwesomeIcon className={classes.cross_icon} icon={faCircleXmark} />
+            <FontAwesomeIcon className={classes.cross_icon} icon={faCircleXmark} onClick={()=>{props.deletePhotofn()}} />
             <img className={classes.image} itemID={props.id} src={"/images/"+props.src} alt='document'/>
         </div>
     </>

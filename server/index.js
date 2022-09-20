@@ -82,8 +82,9 @@ app.post("/upload",upload.array("image"), function(req, res){
             allfilepaths[key] = val.path;
     });
 
-    console.log(allfilepaths);
+});
 
+app.get("/getfiles",function(req, res){
     var i = 0;
     fs.readdirSync(testFolder).forEach(file => {
         i++;
@@ -93,7 +94,7 @@ app.post("/upload",upload.array("image"), function(req, res){
 
     res.send(allUploadedFiles);
 
-    console.log(allUploadedFiles);
+    allUploadedFiles = [];
 });
 
 
