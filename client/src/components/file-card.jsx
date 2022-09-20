@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {} from "@fortawesome/free-brands-svg-icons"
 import {faCircleXmark} from "@fortawesome/free-regular-svg-icons"
 
-import imageFile from "../assets/images/myPic.jpg"
+import imageFile from "../assets/images/photo.jpg"
 
 
 export default function FileCard(props) {
