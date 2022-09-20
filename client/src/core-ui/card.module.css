@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --upload-button-color: #4080E1;
+    --clear-button-color: #FC9184;
+    --angular-hover-color: #f18374;
+    --combine-button-color: rgb(63, 63, 63);
+    --anguler-size: 40px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+.card{
+    height: 30rem;
+    width: 60rem;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 20px rgb(221, 221, 221);
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.buttons > button{
+    min-width: 10rem;
+    height: fit-content;
+    padding: .8%;
+    margin: .5%;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload_btn{
+    background-color: var(--upload-button-color);
+    border: 2px solid var(--upload-button-color);
+}
+
+
+.upload_icon{
+    font-size: x-large;
+    color: white;
+    margin-right: 5%;
+}
+
+.upload_btn:hover{
+    background-color: white;
+    border: 2px solid var(--upload-button-color);
+}
+
+.upload_btn:hover > .upload_icon, .upload_btn:hover{
+    color: #4080E1;
+}
+
+input{
+    display: none;
+}
+
+.clear_btn{
+    background-color: var(--clear-button-color);
+    opacity: .5;
+    border: 2px solid var(--clear-button-color);
+}
+
+.clear_icon{
+    font-size: x-large;
+    color: white;
+    margin-right: 5%;
+}
+
+
+.clear_btn:hover{
+    background-color: white;
+    border: 2px solid var(--clear-button-color);
+}
+
+.clear_btn:hover > .clear_icon, .clear_btn:hover{
+    color: var(--clear-button-color);
+}
+
+.file_container{
+    height: 40%;
+    width: 100%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+}
+
+.left_anguler_box{
+    height: 100%;
+    width: 90px;
+    z-index: 401;
+    position: absolute;
+    z-index: 400;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 15px 0px 15px rgba(255, 255, 255, 1);
+    -webkit-backdrop-filter: blur(50px);
+}
+
+.left_anguler{
+    font-size: var(--anguler-size);
+    margin-left: 22px;
+    color: var(--clear-button-color);
+    border-radius: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 400;
+}
+
+.left_anguler:hover{
+    cursor: pointer;
+    color: var(--angular-hover-color);
+    box-shadow: 0px 0px 5px rgb(175, 175, 175);
+}
+
+
+.right_anguler_box{
+    height: 100%;
+    width: 90px;
+    z-index: 401;
+    position: absolute;
+    z-index: 400;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 15px 15px rgba(255, 255, 255, 1);
+    -webkit-backdrop-filter: blur(50px);
+}
+
+.right_anguler{
+    font-size: var(--anguler-size);
+    margin-right: 22px;
+    color: var(--clear-button-color);
+    border-radius: 100%;
+    position: absolute;
+    right: 0;
+    z-index: 400;
+}
+
+.right_anguler:hover{
+    cursor: pointer;
+    color: var(--angular-hover-color);
+    box-shadow: 0px 0px 5px rgb(175, 175, 175);
+}
+
+.drop_area{
+    height: 100%;
+    width: 100%;
+    border: 2px dashed var(--upload-button-color);
+    border-radius: 15px;
+    margin: auto;
+    opacity: .5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop_area > h1{
+    color: var(--upload-button-color);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+}
+
+.combine_btn_container{
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+}
+
+.counter{
+    height: 20px;
+    width: 20px;
+    background-color: var(--combine-button-color);
+    color: white;
+    border: 1px solid white;
+    border-radius: 100%;
+    position: absolute;
+    left: 89%;
+    top: -4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.combine_btn{
+    min-width: 10rem;
+    height: fit-content;
+    padding: 6%;
+    margin: .5%;
+    border-radius: 5px;
+    border: 2px solid var(--combine-button-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: var(--combine-button-color); 
+}
+
+.combine_icon{
+    font-size: x-large;
+    color: white;
+    margin-right: 5%;
+}
+
+.combine_btn:hover{
+    background-color: white;
+    border: 2px solid var(--combine-button-color);
+}
+
+.combine_btn:hover>.combine_icon, .combine_btn:hover{
+    color: var(--combine-button-color);
+}
+
+
+.carousel {
+    display: flex;
+    margin: 0 15px;
+    width: 85%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}

@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --icon-color: #FC9184;
+    --icon-margin: 5px;
+}
+
+.container{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container > h1{
+    margin-bottom: 5px;
+}
+
+.icons{
+    margin-bottom: 1rem;
+}
+.facebook_icon{
+    height: 32px;
+    width: 32px;
+    fill: var(--icon-color);
+    margin: var(--icon-margin);
+}
+.instagram_icon{
+    height: 32px;
+    width: 32px;
+    fill:  var(--icon-color);
+    margin: var(--icon-margin);
+}
+.twitter_icon{
+    height: 32px;
+    width: 32px;
+    fill:  var(--icon-color);
+    margin: var(--icon-margin);
+}

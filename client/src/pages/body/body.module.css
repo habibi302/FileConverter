@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons > button{
+    padding: 6px;
+    margin: 1px;
+    background-color: #87b4f8;
+    border: none;
+    border-radius: 2px;
+    color: white;
+}
+
+.buttons > button:hover{
+    color: #87b4f8;
+    background-color: white;
+    cursor: pointer;
+}
