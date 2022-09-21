@@ -109,8 +109,20 @@ app.get("/getfiles",function(req, res){
 });
 
 
-app.get("/api", (req, res)=>{
-    res.send("I Love You");
+app.post("/delete", (req, res)=>{
+    fs.unlink("./images/"+req.body.filepath, (err)=>{
+        if(err){
+            console.log("not deleted!");
+        }else{
+            var i = 0;
+            fs.readdirSync(testFolder).forEach(file => {
+            i++;
+            allUploadedFiles.push({id: i.toString(), file: file});
+            });
+            res.send(allUploadedFiles);
+            allUploadedFiles = [];
+        }
+    })
 })
 
 app.listen(3001, ()=>{

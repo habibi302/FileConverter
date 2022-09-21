@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../core-ui/draganddrop.css';
 import FileCard from './file-card';
 import {setUploadedImages} from "../actions/index";
+import Axios from 'axios';
 
 
 function DragAndDrop() {
@@ -20,9 +21,16 @@ function DragAndDrop() {
     dispatch(setUploadedImages(items));
   }
 
-  const deletePhoto = (index)=>{
+  const deletePhoto = (index,path)=>{
     items.splice(index,1);
     dispatch(setUploadedImages(items));
+
+    const fetchData = async()=>{
+      const response = await Axios.post('/delete',{filepath:path});
+      dispatch(setUploadedImages(response.data));
+    }
+
+    fetchData();
   }
 
   return (
