@@ -17,6 +17,7 @@ export default function Card() {
   const myState =  useSelector((state)=>state.imageContainer);
   const dispatch = useDispatch();
 
+
   const [allimages, updateAllImages] = useState(null);
 
 function uploadFile(e){
@@ -111,7 +112,7 @@ function combine(){
                   
                   <div style={true?{border: "none", opacity: "1"}:{}} className={classes.drop_area}>
                   {
-                    myState
+                    myState.length > 0
                     ?
                     <div className={classes.carousel} id="carousel">
                     <DragAndDrop/>

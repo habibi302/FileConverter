@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React,{useEffect} from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import '../core-ui/draganddrop.css';
@@ -8,20 +8,21 @@ import {setUploadedImages} from "../actions/index";
 
 function DragAndDrop() {
   const myState =  useSelector(state=>state.imageContainer);
+  const items = Array.from(myState);
   const dispatch = useDispatch();
+
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
-
-    const items = Array.from(myState);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
     dispatch(setUploadedImages(items));
   }
 
-  const deletePhoto = (val)=>{
-    console.log(myState);
+  const deletePhoto = (index)=>{
+    items.splice(index,1);
+    dispatch(setUploadedImages(items));
   }
 
   return (
@@ -36,7 +37,7 @@ function DragAndDrop() {
                     <Draggable key={val.id} draggableId={val.id} index={index}>
                       {(provided) => (
                         <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <FileCard id={val.id} src={val.file} deletePhotofn={deletePhoto}/>
+                          <FileCard id={val.id} src={val.file} index={index} deletePhotofn={deletePhoto}/>
                         </li>
                       )}
                     </Draggable>
