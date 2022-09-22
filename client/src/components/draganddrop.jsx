@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import '../core-ui/draganddrop.css';
@@ -11,6 +11,8 @@ function DragAndDrop() {
   const myState =  useSelector(state=>state.imageContainer);
   const items = Array.from(myState);
   const dispatch = useDispatch();
+
+  console.log(myState);
 
 
   function handleOnDragEnd(result) {
@@ -45,7 +47,7 @@ function DragAndDrop() {
                     <Draggable key={val.id} draggableId={val.id} index={index}>
                       {(provided) => (
                         <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <FileCard id={val.id} src={val.file} index={index} deletePhotofn={deletePhoto}/>
+                          <FileCard id={val.id} src={val.file} index={index} deletePhotofn={()=>{deletePhoto()}}/>
                         </li>
                       )}
                     </Draggable>
