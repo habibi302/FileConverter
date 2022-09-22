@@ -125,6 +125,33 @@ app.post("/delete", (req, res)=>{
     })
 })
 
+
+app.post("/deleteall",(req, res)=>{
+    function deleteFiles(files, callback){
+        var i = files.length;
+        files.forEach(function(filepath){
+          fs.unlink("./images/"+filepath.file, function(err) {
+            i--;
+            if (err) {
+              callback(err);
+              return;
+            } else if (i <= 0) {
+              callback(null);
+            }
+          });
+        });
+      }
+      
+      deleteFiles(req.body.filepaths, function(err) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send('all files removed');
+        }
+      });
+})
+
+
 app.listen(3001, ()=>{
     console.log("Server Started Successfully on port 3001!");
 });

@@ -87,6 +87,15 @@ function combine(){
       a.scrollLeft -=138;
   }
 
+  function clearQueue(){
+    const clearQueueExecution = async()=>{
+      const response = await Axios.post("/deleteall",{filepaths:myState});
+      console.log(response.data);
+      dispatch(setUploadedImages([]));
+    }
+    clearQueueExecution();
+  }
+
 
   return (
     <>
@@ -98,7 +107,7 @@ function combine(){
                   <p>UPLOAD FILES</p>
                   </button>
                   <input id="upload-file" multiple type='file' accept=".jpg" onChange={addImage} />
-                  <button className={classes.clear_btn}>
+                  <button className={classes.clear_btn} onClick={()=>{clearQueue()}}>
                   <FontAwesomeIcon className={classes.clear_icon} icon={faCircleXmark} />
                   <p>CLEAR QUEUE</p>
                   </button>
