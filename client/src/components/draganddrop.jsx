@@ -47,7 +47,7 @@ function DragAndDrop() {
                     <Draggable key={val.id} draggableId={val.id} index={index}>
                       {(provided) => (
                         <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                          <FileCard id={val.id} src={val.file} index={index} deletePhotofn={()=>{deletePhoto()}}/>
+                          <FileCard id={val.id} src={val.file} index={index} deletePhotofn={()=>{deletePhoto(index,val.file)}}/>
                         </li>
                       )}
                     </Draggable>

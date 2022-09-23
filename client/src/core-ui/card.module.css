@@ -74,7 +74,7 @@ input{
 
 .clear_btn{
     background-color: var(--clear-button-color);
-    opacity: .5;
+    opacity: 1;
     border: 2px solid var(--clear-button-color);
 }
 
@@ -84,10 +84,29 @@ input{
     margin-right: 5%;
 }
 
+.clear_btn:disabled,
+.clear_btn[disabled]{
+    border: 2px solid #9999;
+    background-color: darkgrey;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.clear_btn:hover:disabled,
+.clear_btn:hover[disabled]{
+    border: 2px solid #9999;
+    background-color: darkgrey;
+    color: #fff;
+    cursor: not-allowed;
+}
 
 .clear_btn:hover{
     background-color: white;
     border: 2px solid var(--clear-button-color);
+}
+
+.clear_btn:hover:disabled > .clear_icon, .clear_btn:hover{
+    color: white;
 }
 
 .clear_btn:hover > .clear_icon, .clear_btn:hover{
@@ -193,10 +212,27 @@ input{
     margin: auto;
 }
 
+
 .counter{
     height: 20px;
     width: 20px;
     background-color: var(--combine-button-color);
+    color: white;
+    border: 1px solid white;
+    border-radius: 100%;
+    position: absolute;
+    left: 89%;
+    top: -4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter:disabled,
+.counter[disabled]{
+    height: 20px;
+    width: 20px;
+    background-color: darkgray;
     color: white;
     border: 1px solid white;
     border-radius: 100%;
@@ -223,6 +259,22 @@ input{
     background-color: var(--combine-button-color); 
 }
 
+.combine_btn:disabled{
+    min-width: 10rem;
+    height: fit-content;
+    padding: 6%;
+    margin: .5%;
+    border-radius: 5px;
+    border: 2px solid #9999;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: darkgray; 
+    cursor: not-allowed;
+}
+
 .combine_icon{
     font-size: x-large;
     color: white;
@@ -234,9 +286,19 @@ input{
     border: 2px solid var(--combine-button-color);
 }
 
+.combine_btn:hover:disabled{
+    background-color: darkgray;
+    border: 2px solid #999;
+}
+
 .combine_btn:hover>.combine_icon, .combine_btn:hover{
     color: var(--combine-button-color);
 }
+
+.combine_btn:hover:disabled>.combine_icon, .combine_btn:hover:disabled{
+    color: white;
+}
+
 
 
 .carousel {

@@ -107,9 +107,9 @@ function combine(){
                   <p>UPLOAD FILES</p>
                   </button>
                   <input id="upload-file" multiple type='file' accept=".jpg" onChange={addImage} />
-                  <button className={classes.clear_btn} onClick={()=>{clearQueue()}}>
-                  <FontAwesomeIcon className={classes.clear_icon} icon={faCircleXmark} />
-                  <p>CLEAR QUEUE</p>
+                  <button disabled={myState.length>0?false:true} className={classes.clear_btn} onClick={()=>{clearQueue()}}>
+                      <FontAwesomeIcon className={classes.clear_icon} icon={faCircleXmark} />
+                      <p>CLEAR QUEUE</p>
                   </button>
                 </div>
                 
@@ -136,10 +136,10 @@ function combine(){
                 </div>
 
                 <div className={classes.combine_btn_container}>
-                <div className={classes.counter}>
-                  <h4>0</h4>
+                <div disabled={myState.length>0?false:true} className={classes.counter}>
+                  <h4>{myState.length}</h4>
                 </div>
-                <button className={classes.combine_btn} onClick={(e)=>{combine()}}>
+                <button disabled={myState.length>0?false:true} className={classes.combine_btn} onClick={(e)=>{combine()}}>
                   <FontAwesomeIcon className={classes.combine_icon} icon={faCircleXmark} />
                   <p>COMBINE</p>
                 </button>
