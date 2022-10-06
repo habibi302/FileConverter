@@ -41,9 +41,7 @@ fileFilter: fileFilter
 
 
 
-app.get("/combine", (req, res)=>{
-
-    console.log("clicked!");
+app.post("/combine", (req, res)=>{
 
    const doc = new PDFDocument({autoFirstPage:false});
 
@@ -52,26 +50,25 @@ app.get("/combine", (req, res)=>{
     doc.pipe(fs.createWriteStream('output.pdf'))
     
     
-    //Add an image, constrain it to a given size, and center it vertically and horizontally 
-    var i=0;
+    // //Add an image, constrain it to a given size, and center it vertically and horizontally 
 
-    for(i; i<allUploadedFiles.length; i++){
-
-        var img = doc.openImage('./images/'+allUploadedFiles[i].file);
-        
-        doc.addPage({size: [img.width, img.height]})
-        .image(img,0,0);
-        
-    }
+    req.body.paths.forEach((path)=>{
+      var img = doc.openImage('./images/'+path);
+          
+          doc.addPage({size: [img.width, img.height]})
+          .image(img,0,0);
+     });
 
 
-    doc.end()
+    doc.end() 
 
-    res.json({
-        msg: "PDF Created!"
-    })
-    
-})
+    res.send("PDF Created!");
+});
+
+
+app.get("/download",(req, res)=>{
+  res.download("./output.pdf");
+});
 
 
 app.post("/upload",upload.array("image"), function(req, res){

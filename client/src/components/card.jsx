@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import classes from '../core-ui/card.module.css'
 import Axios from "axios";
+import {saveAs} from "file-saver";
 
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -70,9 +71,28 @@ useEffect(()=>{
 },[]);
 
 function combine(){
-  Axios.get("/combine").then(res=>{
-    console.log(res.data);
+
+  let allPath = [];
+  
+  myState.map((path)=>{
+      allPath.push(path.file);
+      return null;
   })
+
+  const saveFile = () => {
+    saveAs(
+        "http://localhost:3001/download",
+      "example.pdf"
+    );
+}
+
+  const combineData = async()=>{
+    await Axios.post("/combine",{paths:allPath});
+    saveFile();
+  }
+
+  combineData();
+
 }
 
   function goRight(e){
